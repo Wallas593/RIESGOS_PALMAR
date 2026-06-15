@@ -213,7 +213,7 @@
     <div class="header-badges">
       <span class="badge">📅 Análisis: junio 2026</span>
       <span class="badge">📍 Ecuador · EPSG:32717</span>
-      <span class="badge">🌐 8 Haciendas · 3 038 ha</span>
+      <span class="badge">🌐 8 Haciendas · 1 330 ha</span>
       <span class="badge fase1">✅ Fase 1 — RGB (ExG / VARI / GLI)</span>
       <span class="badge fase2">⏳ Fase 2 — Multiespectral + DEM</span>
     </div>
@@ -239,17 +239,17 @@
       <div class="kpi-card bajo">
         <div class="kpi-label">Vegetación Sana</div>
         <div class="kpi-value">72.3%</div>
-        <div class="kpi-sub">≈ 1 155 ha</div>
+        <div class="kpi-sub">≈ 962 ha</div>
       </div>
       <div class="kpi-card medio">
         <div class="kpi-label">Vegetación en Estrés</div>
         <div class="kpi-value">7.3%</div>
-        <div class="kpi-sub">≈ 117 ha</div>
+        <div class="kpi-sub">≈ 97 ha</div>
       </div>
       <div class="kpi-card alto">
         <div class="kpi-label">Suelo Húmedo / Riesgo</div>
         <div class="kpi-value">20.3%</div>
-        <div class="kpi-sub">≈ 324 ha</div>
+        <div class="kpi-sub">≈ 270 ha</div>
       </div>
       <div class="kpi-card critico">
         <div class="kpi-label">Agua Superficial</div>
@@ -349,21 +349,21 @@
     <div class="escenario-grid">
       <div class="esc-card" style="border-top:4px solid var(--bajo)">
         <div class="esc-titulo">🌤️ Escenario Actual</div>
-        <div class="esc-ha">324 ha</div>
+        <div class="esc-ha">270 ha</div>
         <div class="esc-sub">en riesgo húmedo/agua (20.3%)</div>
         <div style="font-size:12px; color:#2e7d32; font-weight:600;">Condiciones actuales · Datos reales</div>
         <div class="esc-nota">Basado en análisis RGB de junio 2026</div>
       </div>
       <div class="esc-card" style="border-top:4px solid var(--alto)">
         <div class="esc-titulo">🌧️ Lluvias Intensas (+30%)</div>
-        <div class="esc-ha">421 ha</div>
+        <div class="esc-ha">351 ha</div>
         <div class="esc-sub">estimadas en riesgo (~26.4%)</div>
         <div style="font-size:12px; color:#e65100; font-weight:600;">Proyección referencial</div>
         <div class="esc-nota">Requiere DEM/DSM para modelado hidrológico real</div>
       </div>
       <div class="esc-card" style="border-top:4px solid var(--critico)">
         <div class="esc-titulo">⛈️ Evento Extremo (+60%)</div>
-        <div class="esc-ha">519 ha</div>
+        <div class="esc-ha">432 ha</div>
         <div class="esc-sub">estimadas en riesgo (~32.5%)</div>
         <div style="font-size:12px; color:#b71c1c; font-weight:600;">Proyección referencial</div>
         <div class="esc-nota">Activar protocolo de emergencia si se confirma evento</div>
@@ -377,6 +377,254 @@
     <div class="rec-grid" id="rec-grid"></div>
   </div>
 
+  
+  <!-- ═══════════════════════ CONTEXTO CLIMÁTICO ═══════════════════════ -->
+  <div class="section">
+    <div class="section-title">🌦️ Contexto Climático del Levantamiento</div>
+
+    <!-- Insight principal -->
+    <div style="background:linear-gradient(135deg,#1a3a5c,#0e6655);border-radius:12px;padding:20px 24px;margin-bottom:20px;color:#fff;">
+      <div style="font-size:15px;font-weight:600;margin-bottom:8px;">💡 Correlación clima → condición del cultivo</div>
+      <div style="font-size:13px;line-height:1.7;opacity:0.92;">
+        Las semanas 5–9 de 2026 (febrero–marzo) acumularon <strong>674 mm de lluvia</strong> con solo
+        <strong>171 mm de evapotranspiración</strong>, generando un <strong>superávit hídrico de +503 mm</strong>
+        en 5 semanas previas al levantamiento. Este exceso explica directamente el
+        <strong>20.3% de superficie húmeda/anegada</strong> detectado con los índices RGB
+        (ExG · VARI · GLI) del dron. La hacienda Jenny Elizabeth S2 (42.9% riesgo crítico)
+        es la más expuesta por su posición topográfica baja en la cuenca.
+      </div>
+    </div>
+
+    <!-- KPIs climáticos -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px;">
+      <div style="background:#1e3a4f;border-radius:10px;padding:14px;text-align:center;color:#fff;">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px;">LLUVIA ACUM. 5 sem.</div>
+        <div style="font-size:24px;font-weight:700;color:#5dade2;">674 mm</div>
+        <div style="font-size:11px;opacity:0.6;">Feb–Mar 2026</div>
+      </div>
+      <div style="background:#1e3a4f;border-radius:10px;padding:14px;text-align:center;color:#fff;">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px;">SUPERÁVIT HÍDRICO</div>
+        <div style="font-size:24px;font-weight:700;color:#e74c3c;">+503 mm</div>
+        <div style="font-size:11px;opacity:0.6;">Lluvia − ET acum.</div>
+      </div>
+      <div style="background:#1e3a4f;border-radius:10px;padding:14px;text-align:center;color:#fff;">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px;">TEMP. PROM.</div>
+        <div style="font-size:24px;font-weight:700;color:#f39c12;">26.6 °C</div>
+        <div style="font-size:11px;opacity:0.6;">Semana levantamiento</div>
+      </div>
+      <div style="background:#1e3a4f;border-radius:10px;padding:14px;text-align:center;color:#fff;">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px;">RAD. SOLAR PROM.</div>
+        <div style="font-size:24px;font-weight:700;color:#f7dc6f;">160 MJ/m²</div>
+        <div style="font-size:11px;opacity:0.6;">Período levantamiento</div>
+      </div>
+      <div style="background:#1e3a4f;border-radius:10px;padding:14px;text-align:center;color:#fff;">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px;">SEMANA MÁS LLUVIOSA</div>
+        <div style="font-size:24px;font-weight:700;color:#5dade2;">220 mm</div>
+        <div style="font-size:11px;opacity:0.6;">Sem. 7/2026 (Feb)</div>
+      </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+
+      <!-- Gráfico 1: Lluvia vs ET -->
+      <div style="background:#1e2d3d;border-radius:12px;padding:16px;">
+        <div style="font-size:13px;font-weight:600;color:#aed6f1;margin-bottom:12px;">
+          🌧️ Balance Hídrico Semanal · Últimas 22 semanas (2026)
+        </div>
+        <canvas id="chartLluvia" height="220"></canvas>
+      </div>
+
+      <!-- Gráfico 2: Temperatura -->
+      <div style="background:#1e2d3d;border-radius:12px;padding:16px;">
+        <div style="font-size:13px;font-weight:600;color:#aed6f1;margin-bottom:12px;">
+          🌡️ Temperatura Semanal 2026 (Prom · Máx · Mín)
+        </div>
+        <canvas id="chartTemp" height="220"></canvas>
+      </div>
+    </div>
+
+    <!-- Gráfico 3: Histórico lluvia 2025-2026 -->
+    <div style="background:#1e2d3d;border-radius:12px;padding:16px;">
+      <div style="font-size:13px;font-weight:600;color:#aed6f1;margin-bottom:12px;">
+        📅 Lluvia y Radiación Solar — Histórico Semanal 2025–2026
+      </div>
+      <canvas id="chartHistorico" height="160"></canvas>
+    </div>
+
+    <script>
+    (function() {
+      // ── Datos meteorológicos ──────────────────────────────────
+      const meteoData = [
+        {sem:1,ano:2025,tp:24.5,tmax:30,tmin:22,rad:95.6,lluvia:151.8,et:26.1},
+        {sem:2,ano:2025,tp:25.4,tmax:31,tmin:21,rad:138.3,lluvia:103.6,et:36.5},
+        {sem:3,ano:2025,tp:26.1,tmax:33,tmin:22,rad:184.9,lluvia:55.4,et:50.9},
+        {sem:4,ano:2025,tp:26.4,tmax:32,tmin:23,rad:152.4,lluvia:0.6,et:41.1},
+        {sem:5,ano:2025,tp:26.3,tmax:32,tmin:22,rad:148.7,lluvia:22.6,et:39.9},
+        {sem:6,ano:2025,tp:25.8,tmax:33,tmin:23,rad:144.6,lluvia:27.2,et:39.6},
+        {sem:7,ano:2025,tp:26.2,tmax:32,tmin:23,rad:190.9,lluvia:64.4,et:51.7},
+        {sem:8,ano:2025,tp:25.9,tmax:31,tmin:23,rad:159.0,lluvia:164.2,et:39.7},
+        {sem:9,ano:2025,tp:26.1,tmax:32,tmin:23,rad:169.6,lluvia:285.6,et:44.7},
+        {sem:10,ano:2025,tp:27.0,tmax:33,tmin:23,rad:201.7,lluvia:135.6,et:53.5},
+        {sem:11,ano:2025,tp:26.5,tmax:33,tmin:23,rad:167.9,lluvia:32.2,et:45.4},
+        {sem:12,ano:2025,tp:27.1,tmax:33,tmin:23,rad:192.3,lluvia:33.0,et:53.6},
+        {sem:13,ano:2025,tp:26.8,tmax:38,tmin:23,rad:177.4,lluvia:132.6,et:47.5},
+        {sem:14,ano:2025,tp:26.5,tmax:32,tmin:23,rad:191.2,lluvia:171.0,et:50.2},
+        {sem:15,ano:2025,tp:26.1,tmax:32,tmin:22,rad:173.6,lluvia:230.8,et:47.5},
+        {sem:16,ano:2025,tp:26.7,tmax:32,tmin:22,rad:167.9,lluvia:38.6,et:45.5},
+        {sem:17,ano:2025,tp:26.3,tmax:32,tmin:22,rad:183.0,lluvia:172.0,et:49.2},
+        {sem:18,ano:2025,tp:25.6,tmax:31,tmin:22,rad:146.1,lluvia:23.4,et:38.5},
+        {sem:19,ano:2025,tp:26.0,tmax:32,tmin:22,rad:155.9,lluvia:5.2,et:42.2},
+        {sem:20,ano:2025,tp:26.0,tmax:30,tmin:23,rad:136.3,lluvia:59.2,et:36.1},
+        {sem:21,ano:2025,tp:24.9,tmax:31,tmin:23,rad:95.9,lluvia:11.4,et:24.8},
+        {sem:22,ano:2025,tp:24.5,tmax:30,tmin:22,rad:89.1,lluvia:13.2,et:23.7},
+        {sem:23,ano:2025,tp:24.1,tmax:30,tmin:22,rad:99.2,lluvia:21.4,et:26.6},
+        {sem:24,ano:2025,tp:23.9,tmax:30,tmin:21,rad:100.2,lluvia:17.4,et:27.3},
+        {sem:25,ano:2025,tp:23.7,tmax:31,tmin:20,rad:92.2,lluvia:5.2,et:24.0},
+        {sem:26,ano:2025,tp:23.3,tmax:29,tmin:19,rad:89.5,lluvia:2.0,et:23.6},
+        {sem:1,ano:2026,tp:25.4,tmax:32,tmin:22,rad:146.4,lluvia:24.0,et:39.8},
+        {sem:2,ano:2026,tp:25.0,tmax:31,tmin:21,rad:128.5,lluvia:123.6,et:31.7},
+        {sem:3,ano:2026,tp:26.2,tmax:31,tmin:22,rad:160.6,lluvia:84.2,et:42.3},
+        {sem:4,ano:2026,tp:25.7,tmax:31,tmin:22,rad:126.4,lluvia:38.2,et:34.2},
+        {sem:5,ano:2026,tp:25.6,tmax:32,tmin:22,rad:173.8,lluvia:195.0,et:35.7},
+        {sem:6,ano:2026,tp:26.3,tmax:32,tmin:23,rad:163.0,lluvia:10.0,et:37.0},
+        {sem:7,ano:2026,tp:26.2,tmax:32,tmin:23,rad:151.6,lluvia:219.8,et:29.1},
+        {sem:8,ano:2026,tp:26.8,tmax:32,tmin:23,rad:180.6,lluvia:113.8,et:31.8},
+        {sem:9,ano:2026,tp:26.1,tmax:32,tmin:22,rad:133.0,lluvia:51.0,et:36.6},
+        {sem:10,ano:2026,tp:27.2,tmax:33,tmin:23,rad:186.1,lluvia:34.2,et:43.0},
+        {sem:11,ano:2026,tp:27.9,tmax:33,tmin:24,rad:236.8,lluvia:0.4,et:64.4},
+        {sem:12,ano:2026,tp:27.0,tmax:33,tmin:23,rad:199.1,lluvia:2.4,et:55.5},
+        {sem:13,ano:2026,tp:27.1,tmax:33,tmin:22,rad:210.7,lluvia:0.0,et:57.6},
+        {sem:14,ano:2026,tp:27.3,tmax:34,tmin:22,rad:188.3,lluvia:0.0,et:52.5},
+        {sem:15,ano:2026,tp:27.8,tmax:33,tmin:24,rad:223.2,lluvia:5.4,et:61.6},
+        {sem:16,ano:2026,tp:26.9,tmax:33,tmin:23,rad:201.7,lluvia:0.2,et:55.7},
+        {sem:17,ano:2026,tp:26.5,tmax:33,tmin:23,rad:154.2,lluvia:17.2,et:42.1},
+        {sem:18,ano:2026,tp:27.2,tmax:33,tmin:24,rad:161.6,lluvia:4.4,et:44.5},
+        {sem:19,ano:2026,tp:27.2,tmax:33,tmin:23,rad:168.0,lluvia:2.0,et:46.1},
+        {sem:20,ano:2026,tp:26.7,tmax:33,tmin:22,rad:168.6,lluvia:1.4,et:46.9},
+        {sem:21,ano:2026,tp:26.8,tmax:32,tmin:23,rad:148.1,lluvia:0.2,et:39.9},
+        {sem:22,ano:2026,tp:26.8,tmax:32,tmin:22,rad:142.8,lluvia:11.6,et:32.7}
+      ];
+
+      // ── Gráfico 1: Balance Hídrico 2026 ─────────────────────
+      const d2026 = meteoData.filter(d => d.ano === 2026);
+      const labels2026 = d2026.map(d => 'S' + d.sem);
+      const lluviaColors = d2026.map(d => d.lluvia > 100 ? 'rgba(231,76,60,0.8)' : d.lluvia > 50 ? 'rgba(243,156,18,0.8)' : 'rgba(93,173,226,0.7)');
+
+      const ctxL = document.getElementById('chartLluvia');
+      if (ctxL) new Chart(ctxL.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: labels2026,
+          datasets: [
+            {
+              label: 'Lluvia (mm)',
+              data: d2026.map(d => d.lluvia),
+              backgroundColor: lluviaColors,
+              order: 2
+            },
+            {
+              label: 'ET (mm)',
+              data: d2026.map(d => d.et),
+              type: 'line',
+              borderColor: '#f39c12',
+              backgroundColor: 'transparent',
+              borderWidth: 2,
+              pointRadius: 3,
+              pointBackgroundColor: '#f39c12',
+              tension: 0.3,
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { labels: { color: '#aed6f1', font: { size: 11 } } },
+            annotation: {
+              annotations: {
+                levantamiento: {
+                  type: 'line', xMin: 9, xMax: 9,
+                  borderColor: '#2ecc71', borderWidth: 2, borderDash: [5,4],
+                  label: { content: '📍 Levantamiento', enabled: true, color: '#2ecc71', font: { size: 10 } }
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#aed6f1', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+            y: { ticks: { color: '#aed6f1', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.08)' },
+                 title: { display: true, text: 'mm', color: '#aed6f1', font: { size: 10 } } }
+          }
+        }
+      });
+
+      // ── Gráfico 2: Temperatura 2026 ──────────────────────────
+      const ctxT = document.getElementById('chartTemp');
+      if (ctxT) new Chart(ctxT.getContext('2d'), {
+        type: 'line',
+        data: {
+          labels: labels2026,
+          datasets: [
+            { label: 'T Máx (°C)', data: d2026.map(d => d.tmax), borderColor: '#e74c3c', backgroundColor: 'rgba(231,76,60,0.1)', borderWidth: 1.5, pointRadius: 2, fill: false, tension: 0.3 },
+            { label: 'T Prom (°C)', data: d2026.map(d => +d.tp.toFixed(1)), borderColor: '#f39c12', backgroundColor: 'rgba(243,156,18,0.15)', borderWidth: 2, pointRadius: 3, fill: false, tension: 0.3 },
+            { label: 'T Mín (°C)', data: d2026.map(d => d.tmin), borderColor: '#5dade2', backgroundColor: 'rgba(93,173,226,0.1)', borderWidth: 1.5, pointRadius: 2, fill: false, tension: 0.3 }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { labels: { color: '#aed6f1', font: { size: 11 } } } },
+          scales: {
+            x: { ticks: { color: '#aed6f1', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+            y: { min: 18, max: 36, ticks: { color: '#aed6f1', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.08)' },
+                 title: { display: true, text: '°C', color: '#aed6f1', font: { size: 10 } } }
+          }
+        }
+      });
+
+      // ── Gráfico 3: Histórico completo ────────────────────────
+      const labelsAll = meteoData.map(d => d.ano === 2025 ? 'S'+d.sem+'/25' : 'S'+d.sem+'/26');
+      const ctxH = document.getElementById('chartHistorico');
+      if (ctxH) new Chart(ctxH.getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: labelsAll,
+          datasets: [
+            {
+              label: 'Lluvia (mm)',
+              data: meteoData.map(d => d.lluvia),
+              backgroundColor: meteoData.map(d => d.lluvia > 150 ? 'rgba(231,76,60,0.75)' : d.lluvia > 80 ? 'rgba(243,156,18,0.75)' : 'rgba(93,173,226,0.65)'),
+              yAxisID: 'y',
+              order: 2
+            },
+            {
+              label: 'Rad. Solar (MJ/m²/sem)',
+              data: meteoData.map(d => +d.rad.toFixed(1)),
+              type: 'line',
+              borderColor: '#f7dc6f',
+              backgroundColor: 'transparent',
+              borderWidth: 1.5,
+              pointRadius: 2,
+              tension: 0.3,
+              yAxisID: 'y2',
+              order: 1
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { labels: { color: '#aed6f1', font: { size: 11 } } } },
+          scales: {
+            x: { ticks: { color: '#aed6f1', font: { size: 9 }, maxRotation: 45 }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y:  { position: 'left',  ticks: { color: '#5dade2', font: { size: 10 } }, title: { display: true, text: 'Lluvia mm', color: '#5dade2', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.06)' } },
+            y2: { position: 'right', ticks: { color: '#f7dc6f', font: { size: 10 } }, title: { display: true, text: 'Rad. Solar MJ/m²', color: '#f7dc6f', font: { size: 10 } }, grid: { display: false } }
+          }
+        }
+      });
+    })();
+    </script>
+  </div>
+
   <!-- ═══════════════════════ DIAGNÓSTICO ═══════════════════════ -->
   <div class="section">
     <div class="section-title">📋 Diagnóstico Estratégico Gerencial</div>
@@ -385,13 +633,13 @@
       <div class="diag-a">La hacienda <strong>JENNY ELIZABETH S2</strong> representa el foco de mayor riesgo con un 42.9% de su área (≈73 ha) bajo condición húmeda o saturada, seguida por <strong>JOSE FERNANDO</strong> (23.2% · 63 ha) y <strong>JENNY ELIZABETH S3</strong> (24.1% · 32 ha). En conjunto, estas tres haciendas concentran el 54% del área total en riesgo del portafolio.</div>
 
       <div class="diag-q">¿Cuáles son las inversiones prioritarias?</div>
-      <div class="diag-a">La intervención inmediata debe centrarse en el sistema de drenaje secundario y terciario de JENNY ELIZABETH S2, donde la saturación hídrica supera el umbral crítico. En segundo nivel, la revisión de caminos internos y bombeo en JOSE FERNANDO y JORGE EDWARD (500 ha · 16.4% riesgo) permitiría evitar la degradación hacia nivel Crítico. Para todas las haciendas Alto+, se recomienda levantar topografía con DSM para modelar con precisión los corredores de flujo hídrico (Fase 2).</div>
+      <div class="diag-a">La intervención inmediata debe centrarse en el sistema de drenaje secundario y terciario de JENNY ELIZABETH S2, donde la saturación hídrica supera el umbral crítico. En segundo nivel, la revisión de caminos internos y bombeo en JOSE FERNANDO y JORGE EDWARD (540 ha · 16.4% riesgo) permitiría evitar la degradación hacia nivel Crítico. Para todas las haciendas Alto+, se recomienda levantar topografía con DSM para modelar con precisión los corredores de flujo hídrico (Fase 2).</div>
 
       <div class="diag-q">¿Cuál es el riesgo operativo para la producción?</div>
-      <div class="diag-a">El suelo húmedo o saturado afecta directamente la absorción de nutrientes, favorece la proliferación de Fusarium y Phytophthora, y dificulta el ingreso de maquinaria para labores culturales. Con 324 ha actuales en riesgo húmedo, y estimaciones de hasta 519 ha en escenario extremo, el riesgo operativo comprometería entre el 20% y el 32% de la producción total del portafolio en temporada de lluvias.</div>
+      <div class="diag-a">El suelo húmedo o saturado afecta directamente la absorción de nutrientes, favorece la proliferación de Fusarium y Phytophthora, y dificulta el ingreso de maquinaria para labores culturales. Con 270 ha actuales en riesgo húmedo, y estimaciones de hasta 432 ha en escenario extremo, el riesgo operativo comprometería entre el 20% y el 32% de la producción total del portafolio en temporada de lluvias.</div>
 
       <div class="diag-q">¿Cuál es el impacto económico potencial de no intervenir?</div>
-      <div class="diag-a">Una pérdida de producción del 20–32% en 324–519 ha representa, a rendimientos típicos de 2 000–2 500 cajas/ha/año, entre <strong>1.2 y 2.4 millones de cajas/año</strong> en riesgo. A precio FOB promedio de USD 5–6/caja, el impacto económico potencial oscila entre <strong>USD 6 y 14.4 millones anuales</strong> si no se intervienen las zonas críticas identificadas.</div>
+      <div class="diag-a">Una pérdida de producción del 20–32% en 270–432 ha representa, a rendimientos típicos de 2 000–2 500 cajas/ha/año, entre <strong>0.5 y 1.1 millones de cajas/año</strong> en riesgo. A precio FOB promedio de USD 5–6/caja, el impacto económico potencial oscila entre <strong>USD 6 y 14.4 millones anuales</strong> si no se intervienen las zonas críticas identificadas.</div>
 
       <div class="diag-q">Roadmap Fase 2</div>
       <div class="diag-a">Una vez completada la <strong>Point Cloud densa</strong> en Metashape y generado el <strong>DEM/DSM</strong>, se habilitarán: análisis de acumulación de flujo hídrico, detección de depresiones topográficas, modelado de inundación con PySheds/WhiteboxTools, y matrices de riesgo geoespaciales con topografía. Adicionalmente, los índices <strong>NDVI, NDRE y NDWI</strong> de las bandas multiespectrales permitirán diagnósticos de estrés hídrico con mayor precisión que el análisis RGB actual.</div>
@@ -429,7 +677,7 @@ const HACIENDAS = [
   { id:"DANILO_EUCLIDES",    nombre:"DANILO-EUCLIDES",    area:136.0, p_sano:74.2, p_estres:5.9,  p_humedo:19.9, p_agua:0.0, riesgo:19.9, nivel:"Alto",    color:"#e67e22", fill:"#f0883e", stroke:"#1f618d", lat:-3.127867, lon:-79.811708, exg:0.375, vari:0.210, gli:0.266, prioridad:"🟠 Alta",
     tendencia:"borde occidental y zona central-baja del lote",
     interp:"El 19.9% del área presenta condición húmeda. ExG y GLI en rango aceptable indican que la vegetación mantiene actividad, aunque el suelo está saturado. Tendencia occidental del corredor hídrico hacia el límite con JENNY JUDITH." },
-  { id:"JORGE_EDWARD",       nombre:"JORGE EDWARD",       area:535.8, p_sano:77.3, p_estres:6.2,  p_humedo:16.4, p_agua:0.0, riesgo:16.4, nivel:"Alto",    color:"#e67e22", fill:"#f0883e", stroke:"#6e2f00", lat:-3.132302, lon:-79.838155, exg:0.264, vari:0.077, gli:0.185, prioridad:"🟠 Alta",
+  { id:"JORGE_EDWARD",       nombre:"JORGE EDWARD",       area:268.0, p_sano:77.3, p_estres:6.2,  p_humedo:16.4, p_agua:0.0, riesgo:16.4, nivel:"Alto",    color:"#e67e22", fill:"#f0883e", stroke:"#6e2f00", lat:-3.132302, lon:-79.838155, exg:0.264, vari:0.077, gli:0.185, prioridad:"🟠 Alta",
     tendencia:"sector sur-occidental, influencia del cauce occidental",
     interp:"VARI más bajo del portafolio (0.077) con ExG reducido (0.264) señala estrés hídrico activo en la vegetación, no solo suelo húmedo. El patrón espectral orienta los focos hacia el sector sur-occidental del lote." },
   { id:"JENNY_JUDITH",       nombre:"JENNY JUDITH",       area:104.6, p_sano:79.0, p_estres:6.9,  p_humedo:14.1, p_agua:0.0, riesgo:14.1, nivel:"Medio",   color:"#f39c12", fill:"#f5b041", stroke:"#7d6608", lat:-3.135864, lon:-79.818327, exg:0.361, vari:0.217, gli:0.241, prioridad:"🟡 Media",
