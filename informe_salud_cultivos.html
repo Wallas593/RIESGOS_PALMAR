@@ -117,8 +117,8 @@
     background: var(--verde-corp); color: white; padding: 12px 14px;
     text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px;
   }
-  tbody tr:nth-child(even) { background: #f8fafc; }
-  tbody tr:hover { background: #eef4f0; }
+  #tabla-riesgo tr:nth-child(even) { background: #f8fafc; }
+  #tabla-riesgo tr:hover { background: #eef4f0; }
   tbody td { padding: 11px 14px; border-bottom: 1px solid var(--gris-borde); }
   .nivel-badge {
     display: inline-block; padding: 3px 10px; border-radius: 12px;
@@ -232,6 +232,13 @@
   #meteo-tooltip td {
     color: #d0e8f5; text-align: center; padding: 3px 6px;
     border-bottom: 1px solid rgba(255,255,255,0.04);
+    background: transparent !important;
+  }
+  #meteo-tooltip tr:nth-child(even) td {
+    background: rgba(255,255,255,0.05) !important;
+  }
+  #meteo-tooltip tr:hover td {
+    background: rgba(93,173,226,0.12) !important;
   }
   #meteo-tooltip td.sem-col { color: #aed6f1; font-weight: 600; text-align: left; }
   #meteo-tooltip td.lluvia-alta   { color: #e74c3c; font-weight: 700; }
