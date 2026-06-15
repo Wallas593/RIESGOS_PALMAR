@@ -206,48 +206,51 @@
     display: none;
     position: absolute;
     z-index: 9999;
-    background: #0f1e2d;
+    background: #0d1b2a;
     border: 1px solid #2e5f8a;
-    border-radius: 10px;
-    padding: 12px 14px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.55);
+    border-radius: 8px;
+    padding: 8px 10px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
     pointer-events: none;
-    min-width: 340px;
-    max-width: 400px;
+    min-width: 270px;
+    max-width: 310px;
     font-family: 'Segoe UI', sans-serif;
   }
   #meteo-tooltip .tt-title {
-    font-size: 11px; font-weight: 700; color: #5dade2;
-    text-transform: uppercase; letter-spacing: 0.6px;
-    margin-bottom: 8px; border-bottom: 1px solid #1e3a55;
-    padding-bottom: 6px;
+    font-size: 9.5px; font-weight: 700; color: #5dade2;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 6px; border-bottom: 1px solid #1e3a55;
+    padding-bottom: 5px;
   }
   #meteo-tooltip table {
-    width: 100%; border-collapse: collapse; font-size: 11px;
+    width: 100%; border-collapse: collapse; font-size: 9.5px;
   }
   #meteo-tooltip th {
-    color: #7fb3d3; font-weight: 600; text-align: center;
-    padding: 3px 6px; border-bottom: 1px solid #1e3a55;
+    color: #7fb3d3; font-weight: 700; text-align: center;
+    padding: 2px 5px; border-bottom: 1px solid #1e3a55;
+    font-size: 9px;
   }
   #meteo-tooltip td {
-    color: #d0e8f5; text-align: center; padding: 3px 6px;
+    color: #cce8ff; text-align: center; padding: 2px 5px;
     border-bottom: 1px solid rgba(255,255,255,0.04);
-    background: transparent !important;
+    background: #0d1b2a !important;
   }
   #meteo-tooltip tr:nth-child(even) td {
-    background: rgba(255,255,255,0.05) !important;
+    background: #122336 !important;
+    color: #1e90ff !important;
   }
   #meteo-tooltip tr:hover td {
-    background: rgba(93,173,226,0.12) !important;
+    background: #1a3a5c !important;
+    color: #ffffff !important;
   }
-  #meteo-tooltip td.sem-col { color: #aed6f1; font-weight: 600; text-align: left; }
+  #meteo-tooltip td.sem-col { color: #90caf9; font-weight: 700; text-align: left; font-size: 9px; }
   #meteo-tooltip td.lluvia-alta   { color: #e74c3c; font-weight: 700; }
   #meteo-tooltip td.lluvia-media  { color: #f39c12; font-weight: 600; }
   #meteo-tooltip td.lluvia-baja   { color: #5dade2; }
   #meteo-tooltip td.lluvia-seca   { color: #82e0aa; }
   #meteo-tooltip .tt-nota {
-    font-size: 10px; color: #7f8c8d; margin-top: 7px;
-    padding-top: 5px; border-top: 1px solid #1e3a55; text-align: center;
+    font-size: 8.5px; color: #7fb3d3; margin-top: 5px;
+    padding-top: 4px; border-top: 1px solid #1e3a55; text-align: center;
   }
   tbody tr { cursor: default; position: relative; }
 
