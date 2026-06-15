@@ -200,6 +200,50 @@
   .filtro-btn.f-alto.active { background: var(--alto); border-color: var(--alto); color: white; }
   .filtro-btn.f-medio { border-color: var(--medio); }
   .filtro-btn.f-medio.active { background: var(--medio); border-color: var(--medio); color: white; }
+
+  /* ── Tooltip meteorológico ── */
+  #meteo-tooltip {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    background: #0f1e2d;
+    border: 1px solid #2e5f8a;
+    border-radius: 10px;
+    padding: 12px 14px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.55);
+    pointer-events: none;
+    min-width: 340px;
+    max-width: 400px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  #meteo-tooltip .tt-title {
+    font-size: 11px; font-weight: 700; color: #5dade2;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    margin-bottom: 8px; border-bottom: 1px solid #1e3a55;
+    padding-bottom: 6px;
+  }
+  #meteo-tooltip table {
+    width: 100%; border-collapse: collapse; font-size: 11px;
+  }
+  #meteo-tooltip th {
+    color: #7fb3d3; font-weight: 600; text-align: center;
+    padding: 3px 6px; border-bottom: 1px solid #1e3a55;
+  }
+  #meteo-tooltip td {
+    color: #d0e8f5; text-align: center; padding: 3px 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  #meteo-tooltip td.sem-col { color: #aed6f1; font-weight: 600; text-align: left; }
+  #meteo-tooltip td.lluvia-alta   { color: #e74c3c; font-weight: 700; }
+  #meteo-tooltip td.lluvia-media  { color: #f39c12; font-weight: 600; }
+  #meteo-tooltip td.lluvia-baja   { color: #5dade2; }
+  #meteo-tooltip td.lluvia-seca   { color: #82e0aa; }
+  #meteo-tooltip .tt-nota {
+    font-size: 10px; color: #7f8c8d; margin-top: 7px;
+    padding-top: 5px; border-top: 1px solid #1e3a55; text-align: center;
+  }
+  tbody tr { cursor: default; position: relative; }
+
 </style>
 </head>
 <body>
@@ -661,6 +705,8 @@
   </div>
 </div>
 
+
+<div id="meteo-tooltip"></div>
 <!-- ═══════════════════════ DATOS JS ═══════════════════════ -->
 <script>
 // ─── DATOS REALES EXTRAÍDOS DE LOS RASTERS ───
@@ -902,7 +948,7 @@ HACIENDAS.forEach((h, i) => {
   const pct = Math.min(100, h.riesgo * 2);
   const colorBarra = h.color;
   tbody.innerHTML += `
-    <tr>
+    <tr data-nombre="${h.nombre}" data-nivel="${h.nivel}">
       <td><strong>${i+1}</strong></td>
       <td><strong>${h.nombre}</strong></td>
       <td>${h.area}</td>
@@ -1046,6 +1092,113 @@ HACIENDAS.forEach(h => {
       ${items}
     </div>`;
 });
+
+// ─── TOOLTIP METEOROLÓGICO EN RANKING ───────────────────────
+(function() {
+  // Datos meteo embebidos (2026 + últimas semanas 2025)
+  const METEO = [
+    {sem:'S1/25',tp:24.5,lluvia:151.8},{sem:'S2/25',tp:25.4,lluvia:103.6},
+    {sem:'S3/25',tp:26.1,lluvia:55.4}, {sem:'S4/25',tp:26.4,lluvia:0.6},
+    {sem:'S5/25',tp:26.3,lluvia:22.6}, {sem:'S6/25',tp:25.8,lluvia:27.2},
+    {sem:'S7/25',tp:26.2,lluvia:64.4}, {sem:'S8/25',tp:25.9,lluvia:164.2},
+    {sem:'S9/25',tp:26.1,lluvia:285.6},{sem:'S10/25',tp:27.0,lluvia:135.6},
+    {sem:'S11/25',tp:26.5,lluvia:32.2},{sem:'S12/25',tp:27.1,lluvia:33.0},
+    {sem:'S13/25',tp:26.8,lluvia:132.6},{sem:'S14/25',tp:26.5,lluvia:171.0},
+    {sem:'S15/25',tp:26.1,lluvia:230.8},{sem:'S16/25',tp:26.7,lluvia:38.6},
+    {sem:'S17/25',tp:26.3,lluvia:172.0},{sem:'S18/25',tp:25.6,lluvia:23.4},
+    {sem:'S19/25',tp:26.0,lluvia:5.2}, {sem:'S20/25',tp:26.0,lluvia:59.2},
+    {sem:'S21/25',tp:24.9,lluvia:11.4},{sem:'S22/25',tp:24.5,lluvia:13.2},
+    {sem:'S23/25',tp:24.1,lluvia:21.4},{sem:'S24/25',tp:23.9,lluvia:17.4},
+    {sem:'S25/25',tp:23.7,lluvia:5.2}, {sem:'S26/25',tp:23.3,lluvia:2.0},
+    {sem:'S1/26',tp:25.4,lluvia:24.0}, {sem:'S2/26',tp:25.0,lluvia:123.6},
+    {sem:'S3/26',tp:26.2,lluvia:84.2}, {sem:'S4/26',tp:25.7,lluvia:38.2},
+    {sem:'S5/26',tp:25.6,lluvia:195.0},{sem:'S6/26',tp:26.3,lluvia:10.0},
+    {sem:'S7/26',tp:26.2,lluvia:219.8},{sem:'S8/26',tp:26.8,lluvia:113.8},
+    {sem:'S9/26',tp:26.1,lluvia:51.0}, {sem:'S10/26',tp:27.2,lluvia:34.2},
+    {sem:'S11/26',tp:27.9,lluvia:0.4}, {sem:'S12/26',tp:27.0,lluvia:2.4},
+    {sem:'S13/26',tp:27.1,lluvia:0.0}, {sem:'S14/26',tp:27.3,lluvia:0.0},
+    {sem:'S15/26',tp:27.8,lluvia:5.4}, {sem:'S16/26',tp:26.9,lluvia:0.2},
+    {sem:'S17/26',tp:26.5,lluvia:17.2},{sem:'S18/26',tp:27.2,lluvia:4.4},
+    {sem:'S19/26',tp:27.2,lluvia:2.0}, {sem:'S20/26',tp:26.7,lluvia:1.4},
+    {sem:'S21/26',tp:26.8,lluvia:0.2}, {sem:'S22/26',tp:26.8,lluvia:11.6}
+  ];
+
+  function lluviaClass(mm) {
+    if (mm > 150) return 'lluvia-alta';
+    if (mm > 80)  return 'lluvia-media';
+    if (mm > 20)  return 'lluvia-baja';
+    return 'lluvia-seca';
+  }
+  function lluviaIcon(mm) {
+    if (mm > 150) return '🔴';
+    if (mm > 80)  return '🟠';
+    if (mm > 20)  return '🟡';
+    return '🟢';
+  }
+
+  function buildTooltipHTML(nombre) {
+    // Mostrar sólo las últimas 16 semanas para mantener compacto
+    const slice = METEO.slice(-16);
+    let rows = slice.map(d => {
+      const cls = lluviaClass(d.lluvia);
+      const icon = lluviaIcon(d.lluvia);
+      return `<tr>
+        <td class="sem-col">${d.sem}</td>
+        <td>${d.tp.toFixed(1)} °C</td>
+        <td class="${cls}">${icon} ${d.lluvia.toFixed(1)}</td>
+      </tr>`;
+    }).join('');
+
+    return `
+      <div class="tt-title">📍 ${nombre} — Clima Semanal</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align:left">Semana</th>
+            <th>T Prom (°C)</th>
+            <th>Lluvia (mm)</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div class="tt-nota">
+        🟢 &lt;20mm &nbsp;·&nbsp; 🟡 20–80mm &nbsp;·&nbsp; 🟠 80–150mm &nbsp;·&nbsp; 🔴 &gt;150mm
+        &nbsp;·&nbsp; 📍 Levantamiento: S9-10/26
+      </div>`;
+  }
+
+  const tt = document.getElementById('meteo-tooltip');
+  const MARGIN = 16;
+
+  document.getElementById('tabla-riesgo').addEventListener('mouseover', function(e) {
+    const tr = e.target.closest('tr');
+    if (!tr || !tr.dataset.nombre) return;
+    tt.innerHTML = buildTooltipHTML(tr.dataset.nombre);
+    tt.style.display = 'block';
+  });
+
+  document.getElementById('tabla-riesgo').addEventListener('mousemove', function(e) {
+    const tr = e.target.closest('tr');
+    if (!tr || !tr.dataset.nombre) return;
+    const ttW = tt.offsetWidth;
+    const ttH = tt.offsetHeight;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    // Posicionar: preferir a la derecha del cursor, ajustar si sale de pantalla
+    let left = e.clientX + MARGIN;
+    let top  = e.clientY - ttH / 2;
+    if (left + ttW > vw - 8)  left = e.clientX - ttW - MARGIN;
+    if (top < 8)               top  = 8;
+    if (top + ttH > vh - 8)   top  = vh - ttH - 8;
+    tt.style.left = left + 'px';
+    tt.style.top  = top  + 'px';
+  });
+
+  document.getElementById('tabla-riesgo').addEventListener('mouseleave', function() {
+    tt.style.display = 'none';
+  });
+})();
+
 </script>
 </body>
 </html>                                                                                                                                                                                                                   
