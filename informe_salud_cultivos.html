@@ -204,7 +204,7 @@
   /* ── Tooltip meteorológico ── */
   #meteo-tooltip {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 9999;
     background: #0f1e2d;
     border: 1px solid #2e5f8a;
@@ -1182,14 +1182,14 @@ HACIENDAS.forEach(h => {
     if (!tr || !tr.dataset.nombre) return;
     const ttW = tt.offsetWidth;
     const ttH = tt.offsetHeight;
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    // Posicionar: preferir a la derecha del cursor, ajustar si sale de pantalla
-    let left = e.clientX + MARGIN;
-    let top  = e.clientY - ttH / 2;
-    if (left + ttW > vw - 8)  left = e.clientX - ttW - MARGIN;
-    if (top < 8)               top  = 8;
-    if (top + ttH > vh - 8)   top  = vh - ttH - 8;
+    const docW = document.documentElement.clientWidth;
+    const docH = document.documentElement.scrollHeight;
+    // Posicionar relativo al documento (funciona dentro de iframe SharePoint)
+    let left = e.pageX + MARGIN;
+    let top  = e.pageY - ttH / 2;
+    if (left + ttW > docW - 8)  left = e.pageX - ttW - MARGIN;
+    if (top < 8)                 top  = 8;
+    if (top + ttH > docH - 8)   top  = docH - ttH - 8;
     tt.style.left = left + 'px';
     tt.style.top  = top  + 'px';
   });
