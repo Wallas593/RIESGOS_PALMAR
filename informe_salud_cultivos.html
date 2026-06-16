@@ -287,7 +287,7 @@
     <div class="kpi-grid">
       <div class="kpi-card bajo">
         <div class="kpi-label">Área Total Analizada</div>
-        <div class="kpi-value">1 598</div>
+        <div class="kpi-value">1 330</div>
         <div class="kpi-sub">hectáreas · 8 haciendas</div>
       </div>
       <div class="kpi-card bajo">
@@ -1148,15 +1148,22 @@ HACIENDAS.forEach(h => {
     return '🟢';
   }
 
+  function tempIcon(tp) {
+    if (tp >= 27.5) return '<span style="color:#e74c3c;font-weight:700;">↑</span>';
+    if (tp >= 27.0) return '<span style="color:#f39c12;font-weight:700;">→</span>';
+    return '<span style="color:#5dade2;font-weight:700;">↓</span>';
+  }
+
   function buildTooltipHTML(nombre) {
     // Mostrar sólo las últimas 16 semanas para mantener compacto
     const slice = METEO.slice(-16);
     let rows = slice.map(d => {
       const cls = lluviaClass(d.lluvia);
       const icon = lluviaIcon(d.lluvia);
+      const tIcon = tempIcon(d.tp);
       return `<tr>
         <td class="sem-col">${d.sem}</td>
-        <td>${d.tp.toFixed(1)} °C</td>
+        <td>${tIcon} ${d.tp.toFixed(1)} °C</td>
         <td class="${cls}">${icon} ${d.lluvia.toFixed(1)}</td>
       </tr>`;
     }).join('');
@@ -1174,8 +1181,8 @@ HACIENDAS.forEach(h => {
         <tbody>${rows}</tbody>
       </table>
       <div class="tt-nota">
-        🟢 &lt;20mm &nbsp;·&nbsp; 🟡 20–80mm &nbsp;·&nbsp; 🟠 80–150mm &nbsp;·&nbsp; 🔴 &gt;150mm
-        &nbsp;·&nbsp; 📍 Levantamiento: S9-10/26
+        <b>Lluvia:</b> 🟢&lt;20 · 🟡20–80 · 🟠80–150 · 🔴&gt;150 mm<br>
+        <b>Temp:</b> <span style="color:#5dade2">↓</span>&lt;27° · <span style="color:#f39c12">→</span>27–27.4° · <span style="color:#e74c3c">↑</span>≥27.5° &nbsp;·&nbsp; 📍 Levant.: S9-10/26
       </div>`;
   }
 
