@@ -397,6 +397,369 @@
     </div>
   </div>
 
+  
+  <!-- ═══════════════════════ ANÁLISIS MULTIVARIADO ═══════════════════════ -->
+  <div class="section">
+    <div class="section-title">🔬 Análisis Multivariado de Indicadores RGB</div>
+
+    <!-- Gráficos: Scatter + Radar -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;">
+
+      <!-- Bubble chart VARI vs ExG -->
+      <div style="background:#1e2d3d;border-radius:12px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#aed6f1;margin-bottom:4px;">
+          📍 Dispersión Táctica: VARI vs ExG
+        </div>
+        <div style="font-size:10px;color:#7fb3d3;margin-bottom:10px;">
+          Eje X = estrés fisiológico · Eje Y = densidad vegetal · Tamaño = % riesgo
+        </div>
+        <canvas id="chartScatter" height="260"></canvas>
+      </div>
+
+      <!-- Radar chart top 3 + referencia -->
+      <div style="background:#1e2d3d;border-radius:12px;padding:16px;">
+        <div style="font-size:12px;font-weight:700;color:#aed6f1;margin-bottom:4px;">
+          🕸️ Radar de Salud: Crítico · Oculto · Referencia
+        </div>
+        <div style="font-size:10px;color:#7fb3d3;margin-bottom:10px;">
+          🔴 Jenny S2 (Crítico) · 🟠 Jorge Edward (alerta oculta) · 🟢 Isaias (referencia) &nbsp;·&nbsp; <b>Lejos del centro = mejor salud</b>
+        </div>
+        <canvas id="chartRadar" height="260"></canvas>
+      </div>
+    </div>
+
+    <!-- Heatmap matriz -->
+    <div style="background:#1e2d3d;border-radius:12px;padding:16px;margin-bottom:18px;overflow-x:auto;">
+      <div style="font-size:12px;font-weight:700;color:#aed6f1;margin-bottom:12px;">
+        🌡️ Matriz de Indicadores — Todas las Haciendas
+      </div>
+      <table id="matrizTable" style="width:100%;border-collapse:collapse;font-size:10.5px;min-width:600px;"></table>
+    </div>
+
+    <!-- Interpretación resumen -->
+    <div style="background:#fff;border-radius:12px;padding:4px 0;overflow:hidden;">
+      <div style="background:#1a3a2a;padding:10px 16px;">
+        <span style="font-size:12px;font-weight:700;color:#a9dfbf;">📋 Interpretación Resumen por Hacienda — Indicadores RGB + Nivel de Riesgo</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="background:#f0f4f0;">
+            <th style="padding:8px 12px;text-align:left;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">Hacienda</th>
+            <th style="padding:8px 12px;text-align:center;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">Nivel</th>
+            <th style="padding:8px 12px;text-align:center;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">ExG</th>
+            <th style="padding:8px 12px;text-align:center;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">VARI</th>
+            <th style="padding:8px 12px;text-align:center;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">GLI</th>
+            <th style="padding:8px 12px;text-align:left;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">Patrón Espectral</th>
+            <th style="padding:8px 12px;text-align:left;color:#1a3a2a;font-size:10px;text-transform:uppercase;border-bottom:2px solid #1a3a2a;">Diagnóstico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fff;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">JENNY ELIZABETH S2</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fde8e8;color:#c0392b;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Crítico</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.334</td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.139</td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.228</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG alto + VARI bajo</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🔴 Dosel cerrado pero saturación severa. Alta clorofila suprimida por anegamiento radicular. Intervención urgente en drenaje.</td>
+          </tr>
+          <tr style="background:#f9fbf9;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">JOSE FERNANDO</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fef3e2;color:#d35400;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Alto</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.301</td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.094</td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.199</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG medio + VARI muy bajo</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🟠 Gran extensión con encharcamiento moderado. VARI crítico indica estrés sistémico amplio. Canales taponados probables.</td>
+          </tr>
+          <tr style="background:#fff;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">JENNY ELIZABETH S3</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fef3e2;color:#d35400;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Alto</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.34</td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.173</td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.233</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG alto + VARI medio</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🟠 Húmedo concentrado en corredor norte-occidental. Patrón sugiere flujo subsuperficial. Conectado hídrica­mente con Danilo.</td>
+          </tr>
+          <tr style="background:#f9fbf9;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">DANILO-EUCLIDES</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fef3e2;color:#d35400;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Alto</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.375</td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.21</td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.266</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG alto + VARI medio-alto</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🟠 Mejor índices espectrales del grupo Alto. Húmedo localizado. Drenaje funcional parcialmente activo.</td>
+          </tr>
+          <tr style="background:#fff;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">JORGE EDWARD</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fef3e2;color:#d35400;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Alto</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.264</td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.077</td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.185</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG bajo + VARI mínimo</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">⚠️ ALERTA OCULTA: peores índices espectrales de todas las haciendas. Estrés fisiológico intenso aunque % húmedo sea moderado. Daño radicular posible.</td>
+          </tr>
+          <tr style="background:#f9fbf9;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">JENNY JUDITH</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fefde2;color:#b7950b;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Medio</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.361</td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.217</td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.241</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG alto + VARI alto</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🟡 Vegetación relativamente sana. Húmedo en límite Alto/Medio. Sin señales de estrés espectral agudo.</td>
+          </tr>
+          <tr style="background:#fff;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">XAVIER EUCLIDES</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fefde2;color:#b7950b;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Medio</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.291</td>
+            <td style="padding:8px 12px;text-align:center;background:#fef9e7;color:#b7950b;font-weight:700;">0.182</td>
+            <td style="padding:8px 12px;text-align:center;background:#fdecea;color:#c0392b;font-weight:700;">0.209</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG medio + VARI medio</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🟡 Perfil balanceado. VARI por encima del umbral crítico. Monitorear en próximo levantamiento.</td>
+          </tr>
+          <tr style="background:#f9fbf9;border-bottom:1px solid #e8f0e8;">
+            <td style="padding:8px 12px;font-weight:700;color:#1a2a1a;">ISAIAS</td>
+            <td style="padding:8px 12px;text-align:center;">
+              <span style="background:#fefde2;color:#b7950b;padding:2px 8px;border-radius:10px;font-weight:700;font-size:10px;">Medio</span>
+            </td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.386</td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.265</td>
+            <td style="padding:8px 12px;text-align:center;background:#d5f5e3;color:#1e8449;font-weight:700;">0.278</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">ExG máximo + VARI máximo</td>
+            <td style="padding:8px 12px;color:#2c3e50;font-size:10.5px;">🟢 Hacienda de referencia: mejores índices en todas las bandas. Suelo con mejor drenaje natural o topografía favorable.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Leyenda de referencia -->
+    <div style="display:flex;gap:20px;margin-top:12px;flex-wrap:wrap;font-size:10px;color:#7f8c8d;">
+      <span><span style="display:inline-block;width:12px;height:12px;background:#d5f5e3;border:1px solid #1e8449;border-radius:2px;margin-right:4px;"></span>Valor alto (favorable)</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#fef9e7;border:1px solid #b7950b;border-radius:2px;margin-right:4px;"></span>Valor medio</span>
+      <span><span style="display:inline-block;width:12px;height:12px;background:#fdecea;border:1px solid #c0392b;border-radius:2px;margin-right:4px;"></span>Valor bajo (alerta)</span>
+      <span style="margin-left:12px;">⚠️ Alerta oculta: hacienda con bajo % riesgo pero índices espectrales críticos</span>
+    </div>
+
+    <script>
+    (function() {
+      const HD = [
+        {nombre:'Jenny S2',    exg:0.334,vari:0.139,gli:0.228,sano:44.1,riesgo:42.9,color:'rgba(231,76,60,0.85)',border:'#c0392b'},
+        {nombre:'José Fernando',exg:0.301,vari:0.094,gli:0.199,sano:67.7,riesgo:23.2,color:'rgba(230,126,34,0.85)',border:'#e67e22'},
+        {nombre:'Jenny S3',    exg:0.340,vari:0.173,gli:0.233,sano:71.6,riesgo:24.1,color:'rgba(240,136,62,0.85)',border:'#e67e22'},
+        {nombre:'Danilo',      exg:0.375,vari:0.210,gli:0.266,sano:74.2,riesgo:19.9,color:'rgba(243,156,18,0.85)',border:'#d4a017'},
+        {nombre:'Jorge Edward',exg:0.264,vari:0.077,gli:0.185,sano:77.3,riesgo:16.4,color:'rgba(110,47,0,0.85)',border:'#6e2f00'},
+        {nombre:'Jenny Judith',exg:0.361,vari:0.217,gli:0.241,sano:79.0,riesgo:14.1,color:'rgba(125,102,8,0.85)',border:'#7d6608'},
+        {nombre:'Xavier',      exg:0.291,vari:0.182,gli:0.209,sano:79.6,riesgo:13.7,color:'rgba(74,35,90,0.85)',border:'#4a235a'},
+        {nombre:'Isaias',      exg:0.386,vari:0.265,gli:0.278,sano:85.7,riesgo:8.2, color:'rgba(20,90,50,0.85)', border:'#145a32'},
+      ];
+
+      // ── Bubble Chart: VARI (X) vs ExG (Y), size = riesgo ──
+      const ctxS = document.getElementById('chartScatter');
+      if (ctxS) new Chart(ctxS.getContext('2d'), {
+        type: 'bubble',
+        data: {
+          datasets: HD.map(h => ({
+            label: h.nombre,
+            data: [{ x: h.vari, y: h.exg, r: Math.max(6, Math.sqrt(h.riesgo) * 3.2) }],
+            backgroundColor: h.color,
+            borderColor: h.border,
+            borderWidth: 2
+          }))
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => {
+                  const h = HD[ctx.datasetIndex];
+                  return [`${h.nombre}`, `VARI: ${h.vari} | ExG: ${h.exg}`, `Riesgo: ${h.riesgo}%`];
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              min: 0.05, max: 0.30,
+              title: { display: true, text: '← Más estrés · VARI · Más vigor →', color: '#aed6f1', font: { size: 10 } },
+              ticks: { color: '#aed6f1', font: { size: 9.5 } },
+              grid: { color: 'rgba(255,255,255,0.07)' }
+            },
+            y: {
+              min: 0.24, max: 0.40,
+              title: { display: true, text: '← Dosel ralo · ExG · Dosel denso →', color: '#aed6f1', font: { size: 10 } },
+              ticks: { color: '#aed6f1', font: { size: 9.5 } },
+              grid: { color: 'rgba(255,255,255,0.07)' }
+            }
+          }
+        },
+        plugins: [{
+          afterDraw(chart) {
+            const {ctx, scales: {x, y}} = chart;
+            // Líneas de cuadrante
+            const xMid = x.getPixelForValue(0.175);
+            const yMid = y.getPixelForValue(0.325);
+            ctx.save();
+            ctx.setLineDash([4,4]);
+            ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(xMid, chart.chartArea.top); ctx.lineTo(xMid, chart.chartArea.bottom); ctx.stroke();
+            ctx.beginPath(); ctx.moveTo(chart.chartArea.left, yMid); ctx.lineTo(chart.chartArea.right, yMid); ctx.stroke();
+            // Etiquetas de cuadrantes
+            ctx.font = '8.5px Segoe UI'; ctx.fillStyle = 'rgba(255,255,255,0.28)';
+            ctx.fillText('Denso+Estresado', xMid - 85, chart.chartArea.top + 14);
+            ctx.fillText('Denso+Sano', xMid + 6, chart.chartArea.top + 14);
+            ctx.fillText('Ralo+Crítico', xMid - 75, chart.chartArea.bottom - 6);
+            ctx.fillText('Ralo+Vigoroso', xMid + 6, chart.chartArea.bottom - 6);
+            // Labels de haciendas
+            ctx.font = 'bold 8.5px Segoe UI';
+            chart.data.datasets.forEach((ds, i) => {
+              const h = HD[i];
+              const meta = chart.getDatasetMeta(i);
+              if (meta.data[0]) {
+                const px = meta.data[0].x, py = meta.data[0].y;
+                ctx.fillStyle = '#ffffff';
+                ctx.fillText(h.nombre.split(' ').pop(), px + 6, py - 4);
+              }
+            });
+            ctx.restore();
+          }
+        }]
+      });
+
+      // ── Radar Chart: Jenny S2 vs Jorge Edward vs Isaias ──
+      function norm(val, min, max) { return +((val - min) / (max - min)).toFixed(3); }
+      // Dirección: LEJOS del centro = MEJOR (más salud)
+      // Cerca del origen = peor condición
+      const radarHD = [HD[0], HD[4], HD[7]]; // Jenny S2, Jorge Edward, Isaias
+      const radarColors = [
+        // Jenny S2 Crítico → ROJO vivo
+        { bg:'rgba(231,76,60,0.30)',   border:'#e74c3c', bw:2.5, pr:4, pd:'rgba(231,76,60,0.9)' },
+        // Jorge Edward alerta oculta → NARANJA intenso
+        { bg:'rgba(230,126,34,0.28)', border:'#e67e22', bw:2.5, pr:4, pd:'rgba(230,126,34,0.9)' },
+        // Isaias referencia → VERDE brillante
+        { bg:'rgba(39,174,96,0.28)',  border:'#27ae60', bw:2.5, pr:4, pd:'rgba(39,174,96,0.9)'  },
+      ];
+      const ctxR = document.getElementById('chartRadar');
+      if (ctxR) new Chart(ctxR.getContext('2d'), {
+        type: 'radar',
+        data: {
+          labels: ['ExG (Densidad)', 'VARI (Vigor)', 'GLI (Hoja verde)', '% Sano', 'Resist. al Riesgo'],
+          datasets: radarHD.map((h, i) => ({
+            label: h.nombre,
+            data: [
+              norm(h.exg,  0.264, 0.386),
+              norm(h.vari, 0.077, 0.265),
+              norm(h.gli,  0.185, 0.278),
+              norm(h.sano, 44.1,  85.7),
+              norm(100 - h.riesgo, 57.1, 91.8)
+            ],
+            backgroundColor:    radarColors[i].bg,
+            borderColor:        radarColors[i].border,
+            borderWidth:        radarColors[i].bw,
+            pointBackgroundColor: radarColors[i].pd,
+            pointBorderColor:   radarColors[i].border,
+            pointRadius:        radarColors[i].pr,
+            pointHoverRadius:   6
+          }))
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#ffffff',
+                font: { size: 11, weight: '600' },
+                boxWidth: 16,
+                padding: 14,
+                usePointStyle: true
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: ctx => {
+                  const labels = ['ExG','VARI','GLI','% Sano','Resist.'];
+                  return ` ${ctx.dataset.label}: ${labels[ctx.dataIndex]} = ${(ctx.raw*100).toFixed(0)}%`;
+                }
+              }
+            }
+          },
+          scales: {
+            r: {
+              min: 0, max: 1,
+              ticks: {
+                stepSize: 0.25,
+                color: 'rgba(174,214,241,0.55)',
+                font: { size: 8.5 },
+                backdropColor: 'transparent',
+                callback: v => v === 0 ? 'PEOR' : v === 1 ? 'MEJOR' : ''
+              },
+              grid:       { color: 'rgba(255,255,255,0.10)' },
+              angleLines: { color: 'rgba(255,255,255,0.14)' },
+              pointLabels: {
+                color: '#d0e8f5',
+                font: { size: 10, weight: '600' }
+              }
+            }
+          }
+        }
+      });
+
+      // ── Heatmap Matriz ──────────────────────────────────────
+      function heatColor(val, min, max, invert) {
+        let r = (val - min) / (max - min);
+        if (invert) r = 1 - r;
+        if (r > 0.65) return {bg:'#d5f5e3', tc:'#1a5e35'};
+        if (r > 0.35) return {bg:'#fef9e7', tc:'#7d6000'};
+        return {bg:'#fdecea', tc:'#922b21'};
+      }
+      const cols = [
+        {label:'% Sano',   key:'sano',   min:44.1,  max:85.7,  inv:false, fmt: v => v+'%'},
+        {label:'% Estrés', key:'estres', min:4.2,   max:13.0,  inv:true,  fmt: v => v+'%', extraHD: [13.0,9.1,4.2,5.9,6.2,6.9,6.6,6.0]},
+        {label:'% Húmedo', key:'riesgo', min:8.2,   max:42.9,  inv:true,  fmt: v => v+'%'},
+        {label:'ExG',      key:'exg',    min:0.264, max:0.386, inv:false, fmt: v => v},
+        {label:'VARI',     key:'vari',   min:0.077, max:0.265, inv:false, fmt: v => v},
+        {label:'GLI',      key:'gli',    min:0.185, max:0.278, inv:false, fmt: v => v},
+      ];
+      const estresArr = [13.0,9.1,4.2,5.9,6.2,6.9,6.6,6.0];
+      const tbl = document.getElementById('matrizTable');
+      if (tbl) {
+        let head = '<tr style="background:#122a3a;"><th style="padding:6px 10px;text-align:left;color:#7fb3d3;font-size:9.5px;border-bottom:1px solid #2e5f8a;">Hacienda</th>';
+        cols.forEach(c => { head += `<th style="padding:6px 10px;text-align:center;color:#7fb3d3;font-size:9.5px;border-bottom:1px solid #2e5f8a;">${c.label}</th>`; });
+        head += '</tr>';
+        tbl.innerHTML = head;
+        HD.forEach((h, i) => {
+          const vals = [h.sano, estresArr[i], h.riesgo, h.exg, h.vari, h.gli];
+          let row = `<tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:5px 10px;color:#d0e8f5;font-size:10px;font-weight:600;white-space:nowrap;">${h.nombre}</td>`;
+          cols.forEach((c, ci) => {
+            const v = vals[ci];
+            const clr = heatColor(v, c.min, c.max, c.inv);
+            row += `<td style="padding:5px 10px;text-align:center;background:${clr.bg};color:${clr.tc};font-weight:700;font-size:10px;">${c.fmt(v)}</td>`;
+          });
+          row += '</tr>';
+          tbl.innerHTML += row;
+        });
+      }
+    })();
+    </script>
+  </div>
+
   <!-- ═══════════════════════ ESCENARIOS ═══════════════════════ -->
   <div class="section">
     <div class="section-title">🌧️ Escenarios de Riesgo Proyectados</div>
