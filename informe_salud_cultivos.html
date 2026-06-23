@@ -1913,15 +1913,25 @@ var puntosLayer = L.layerGroup();
 function buildPopup(p) {
   var color = ESTADO_COLOR[p.e] || '#7fb3e0';
   var elabel = {Alerta:'🔴 Alerta', Estable:'🟡 Estable', Optimo:'🟢 Óptimo'}[p.e] || p.e;
+  // Google Maps URL con lat/lon del punto
+  var mapsUrl = 'https://www.google.com/maps?q=' + p.lat + ',' + p.lon + '&ll=' + p.lat + ',' + p.lon + '&z=18';
+  // rel="noreferrer noopener" fuerza apertura en navegador externo en SharePoint mobile
   return (
-    '<div style="width:225px;font-family:sans-serif">' +
-    '<img src="' + p.foto + '" style="width:100%;border-radius:6px;margin-bottom:7px;display:block" loading="lazy">' +
+    '<div style="width:230px;font-family:sans-serif">' +
+    '<a href="' + p.foto + '" target="_blank" rel="noreferrer noopener">' +
+    '<img src="' + p.foto + '" style="width:100%;border-radius:6px;margin-bottom:7px;display:block" loading="lazy" title="Toca para ver foto completa">' +
+    '</a>' +
     '<div style="font-size:11px;line-height:1.7">' +
     '<b style="font-size:12px;color:#1a4d2e">' + p.f + '</b>' +
     ' <span style="color:#888">·</span> <span style="color:#555;font-size:10.5px">Lote: <b>' + p.l + '</b></span><br>' +
     '<span style="color:' + color + ';font-weight:700">' + elabel + '</span> · ' + p.c + '<br>' +
     '📅 ' + p.fec + ' · 🌱 ' + p.atr + '<br>' +
-    '<a href="' + p.foto + '" target="_blank" style="color:#1e90ff;font-weight:600;text-decoration:none">📷 Ver foto completa →</a>' +
+    '<div style="margin-top:6px;display:flex;gap:8px;flex-wrap:wrap">' +
+    '<a href="' + p.foto + '" target="_blank" rel="noreferrer noopener" ' +
+    '   style="flex:1;text-align:center;background:#1a4d2e;color:#fff;border-radius:5px;padding:4px 6px;font-size:10.5px;font-weight:700;text-decoration:none">📷 Ver foto</a>' +
+    '<a href="' + mapsUrl + '" target="_blank" rel="noreferrer noopener" ' +
+    '   style="flex:1;text-align:center;background:#1565c0;color:#fff;border-radius:5px;padding:4px 6px;font-size:10.5px;font-weight:700;text-decoration:none">📍 Ir a mapa</a>' +
+    '</div>' +
     '</div></div>'
   );
 }
